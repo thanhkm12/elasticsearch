@@ -1,0 +1,32 @@
+curl -XGET localhost:9200/fteluv/videos_ver2/_search?pretty=true -d '{
+"query": {
+	"bool": {
+		"must": {
+				"multi_match": {
+					"query": query_string,
+					"type": "cross_fields",
+					"fields": ["title", "title_vie", "title_origin", "actors", "directors"]
+				}
+			},
+		"filter": {
+			"bool": {
+				"must": [{
+						"term": {
+							"GEOIP_COUNTRY_CODE_availability": geoip
+						}
+					}, {
+						"term": {
+							"platforms": platform
+						}
+					},
+					{
+						"term": {
+							"status": "1"
+						}
+					}
+				]
+			}
+		}
+	}
+}
+}'
