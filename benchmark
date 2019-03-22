@@ -1,0 +1,3 @@
+https://github.com/wg/wrk
+
+./wrk -d10 -t8 -c20000 --timeout 10 http://search.fptplay.net/v2/search/vod/all?query_str=chau%20tinh%20tinh
